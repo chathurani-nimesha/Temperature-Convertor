@@ -1,26 +1,87 @@
-import java.sql.SQLOutput;
-import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class TemperatureConvertor {
 
-    //celsius to fahrenheit
-    public static double celsiusToFahrenheit(double celsius){
-        return (celsius*9/5)+32;
+    // Celsius to Fahrenheit
+    public static double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9 / 5) + 32;
     }
+
+
+
     public static void main(String[] args) {
-        Scanner input=new Scanner(System.in);
 
-        System.out.println("+---------------------------------------------------------");
-        System.out.println("|            Temperature Convertor                        |");
-        System.out.println("+---------------------------------------------------------");
+        Scanner input = new Scanner(System.in);
+        boolean running = true;
 
-        System.out.println("\t[01]. Celsius to Fahrenheit");
-        System.out.println("\t[01]. Fahrenheit to Celsius");
-        System.out.println("\t[01]. Celsius to Kelvin");
-        System.out.println("\t[01]. Kelvin to Celsius");
-        System.out.println("\t[01]. Exit");
+        while (running) {
+            System.out.println("+-----------------------------------------------+");
+            System.out.println("\n|             TEMPERATURE CONVERTER           |");
+            System.out.println("+-----------------------------------------------+");
 
-        System.out.print("\n\nSelect an option to continue -> ");
+            System.out.println("\t[1]. Celsius to Fahrenheit");
+            System.out.println("\t[2]. Fahrenheit to Celsius");
+            System.out.println("\t[3]. Celsius to Kelvin");
+            System.out.println("\t[4]. Kelvin to Celsius");
+            System.out.println("\t[5]. Exit");
+            System.out.print("Select an option: ");
+
+            try {
+                int choice = Integer.parseInt(input.nextLine());
+
+                if (choice == 5) {
+                    running = false;
+                    System.out.println("Thank you for using the converter!");
+                    continue;
+                }
+
+                if (choice < 1 || choice > 5) {
+                    System.out.println("Invalid menu option!");
+                    continue;
+                }
+
+                System.out.print("Enter temperature: ");
+                double temperature =
+                        Double.parseDouble(input.nextLine());
+
+                double result;
+
+                switch (choice) {
+                    case 1:
+                        result = celsiusToFahrenheit(temperature);
+                        System.out.printf("Fahrenheit: %.2f °F%n", result);
+                        break;
+
+                    case 2:
+                       // result = fahrenheitToCelsius(temperature);
+                        //System.out.printf("Celsius: %.2f °C%n", result);
+                        break;
+
+                    case 3:
+                        //result = celsiusToKelvin(temperature);
+                        //System.out.printf("Kelvin: %.2f K%n", result);
+                        break;
+
+                    case 4:
+                        //result = kelvinToCelsius(temperature);
+                        //System.out.printf("Celsius: %.2f °C%n", result);
+                        break;
+
+                    default:
+                        System.out.println("Invalid option!");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println(
+                        "Invalid input! Please enter a valid number."
+                );
+
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+
+        input.close();
     }
 }

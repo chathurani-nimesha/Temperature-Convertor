@@ -8,6 +8,25 @@ public class TemperatureConvertor {
         return (celsius * 9 / 5) + 32;
     }
 
+    // Fahrenheit to Celsius
+    public static double fahrenheitToCelsius(double fahrenheit) {
+        return (fahrenheit - 32) * 5 / 9;
+    }
+
+    // Celsius to Kelvin
+    public static double celsiusToKelvin(double celsius) {
+        return celsius + 273.15;
+    }
+
+    // Kelvin to Celsius
+    public static double kelvinToCelsius(double kelvin) {
+        if (kelvin < 0) {
+            throw new IllegalArgumentException(
+                    "Kelvin cannot be below zero."
+            );
+        }
+        return kelvin - 273.15;
+    }
 
 
     public static void main(String[] args) {
@@ -17,7 +36,7 @@ public class TemperatureConvertor {
 
         while (running) {
             System.out.println("+-----------------------------------------------+");
-            System.out.println("\n|             TEMPERATURE CONVERTER           |");
+            System.out.println("|             TEMPERATURE CONVERTER           |");
             System.out.println("+-----------------------------------------------+");
 
             System.out.println("\t[1]. Celsius to Fahrenheit");
@@ -54,18 +73,18 @@ public class TemperatureConvertor {
                         break;
 
                     case 2:
-                       // result = fahrenheitToCelsius(temperature);
-                        //System.out.printf("Celsius: %.2f °C%n", result);
+                       result = fahrenheitToCelsius(temperature);
+                       System.out.printf("Celsius: %.2f °C%n", result);
                         break;
 
                     case 3:
-                        //result = celsiusToKelvin(temperature);
-                        //System.out.printf("Kelvin: %.2f K%n", result);
+                        result = celsiusToKelvin(temperature);
+                        System.out.printf("Kelvin: %.2f K%n", result);
                         break;
 
                     case 4:
-                        //result = kelvinToCelsius(temperature);
-                        //System.out.printf("Celsius: %.2f °C%n", result);
+                        result = kelvinToCelsius(temperature);
+                        System.out.printf("Celsius: %.2f °C%n", result);
                         break;
 
                     default:
